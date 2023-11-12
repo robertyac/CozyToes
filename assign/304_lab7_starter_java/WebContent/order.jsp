@@ -37,7 +37,7 @@ if (productList == null || productList.isEmpty()) {
     return;
 }
 
-// Load driver class
+try{// Load driver class
 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
 // Connection
@@ -75,10 +75,11 @@ while (iterator.hasNext()) {
     double price = Double.parseDouble((String) product.get(2));
     int quantity = (Integer) product.get(3);
 
-    pstmt = conn.prepareStatement("INSERT INTO orderproduct (orderId, productId, quantity) VALUES (?, ?, ?)");
+    pstmt = conn.prepareStatement("INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (?, ?, ?, ?)");
     pstmt.setInt(1, orderId);
     pstmt.setString(2, productId);
     pstmt.setInt(3, quantity);
+	pstmt.setDouble(4, price);
     pstmt.executeUpdate();
 
     totalAmount += price * quantity;
@@ -96,6 +97,13 @@ out.println("Order placed successfully. Order ID: " + orderId + ", Total Amount:
 rs.close();
 pstmt.close();
 conn.close();
+}
+catch (java.lang.ClassNotFoundException e){
+out.println("ClassNotFoundException: " +e);
+} catch (SQLException se) {
+out.println("SQLException: " + se);
+}
+
 %>
 </BODY>
 </HTML>
