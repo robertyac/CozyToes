@@ -19,46 +19,83 @@ String custId = request.getParameter("customerId");
 HashMap<String, ArrayList<Object>> productList = (HashMap<String, ArrayList<Object>>) session.getAttribute("productList");
 
 // Determine if valid customer id was entered
+if (custId == null || custId.isEmpty()) {
+    out.println("Invalid customer ID.");
+    return;
+}
+
+try {
+    Integer.parseInt(custId);
+} catch (NumberFormatException e) {
+    out.println("Invalid customer ID.");
+    return;
+}
+
 // Determine if there are products in the shopping cart
-// If either are not true, display an error message
+if (productList == null || productList.isEmpty()) {
+    out.println("Your shopping cart is empty.");
+    return;
+}
 
-// Make connection
+// Load driver class
+Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-// Save order information to database
+// Connection
+String url = "jdbc:sqlserver://cosc304_sqlserver:1433;DatabaseName=orders;TrustServerCertificate=True";
+String uid = "sa";
+String pw = "304#sa#pw";
+Connection conn = DriverManager.getConnection(url, uid, pw);
 
+// Validate customer id in database
+String sql = "SELECT COUNT(*) FROM customer WHERE customerId = ?";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setInt(1, Integer.parseInt(custId));
+ResultSet rs = pstmt.executeQuery();
+if (!rs.next() || rs.getInt(1) == 0) {
+    out.println("Customer ID does not exist.");
+    return;
+}
 
-	/*
-	// Use retrieval of auto-generated keys.
-	PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);			
-	ResultSet keys = pstmt.getGeneratedKeys();
-	keys.next();
-	int orderId = keys.getInt(1);
-	*/
+// insert into ordersummary table and retrieving auto-generated id
+String sql2 = "INSERT INTO ordersummary (OrderDate, customerId) VALUES (GETDATE(), ?)";
+pstmt = conn.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
+pstmt.setInt(1, Integer.parseInt(custId));
+pstmt.executeUpdate();
+rs = pstmt.getGeneratedKeys();
+rs.next();
+int orderId = rs.getInt(1);
 
-// Insert each item into OrderProduct table using OrderId from previous INSERT
+// Traverse through productList and insert into OrderProduct table
+double totalAmount = 0;
+Iterator<Map.Entry<String, ArrayList<Object>>> iterator = productList.entrySet().iterator();
+while (iterator.hasNext()) {
+    Map.Entry<String, ArrayList<Object>> entry = iterator.next();
+    ArrayList<Object> product = (ArrayList<Object>) entry.getValue();
+    String productId = (String) product.get(0);
+    double price = Double.parseDouble((String) product.get(2));
+    int quantity = (Integer) product.get(3);
 
-// Update total amount for order record
+    pstmt = conn.prepareStatement("INSERT INTO orderproduct (orderId, productId, quantity) VALUES (?, ?, ?)");
+    pstmt.setInt(1, orderId);
+    pstmt.setString(2, productId);
+    pstmt.setInt(3, quantity);
+    pstmt.executeUpdate();
 
-// Here is the code to traverse through a HashMap
-// Each entry in the HashMap is an ArrayList with item 0-id, 1-name, 2-quantity, 3-price
+    totalAmount += price * quantity;
+}
 
-/*
-	Iterator<Map.Entry<String, ArrayList<Object>>> iterator = productList.entrySet().iterator();
-	while (iterator.hasNext())
-	{ 
-		Map.Entry<String, ArrayList<Object>> entry = iterator.next();
-		ArrayList<Object> product = (ArrayList<Object>) entry.getValue();
-		String productId = (String) product.get(0);
-        String price = (String) product.get(2);
-		double pr = Double.parseDouble(price);
-		int qty = ( (Integer)product.get(3)).intValue();
-            ...
-	}
-*/
+String sql4 = "UPDATE ordersummary SET totalAmount = ? WHERE orderId = ?";
+pstmt = conn.prepareStatement(sql4);
+pstmt.setDouble(1, totalAmount);
+pstmt.setInt(2, orderId);
+pstmt.executeUpdate();
 
-// Print out order summary
+out.println("Order placed successfully. Order ID: " + orderId + ", Total Amount: " + totalAmount);
 
-// Clear cart if order placed successfully
+// Close connection
+rs.close();
+pstmt.close();
+conn.close();
 %>
 </BODY>
 </HTML>
