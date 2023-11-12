@@ -93,6 +93,9 @@ pstmt.executeUpdate();
 
 out.println("Order placed successfully. Order ID: " + orderId + ", Total Amount: " + totalAmount);
 
+//clear their shopping cart
+session.removeAttribute("productList");
+
 // Close connection
 rs.close();
 pstmt.close();
