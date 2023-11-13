@@ -11,11 +11,11 @@
 <title>Dave & Rob Grocery</title>
 <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Ariel', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            color: #000; /* Set default text color for the body */
+            color: #000;
         }
 
         header {
@@ -60,24 +60,30 @@
 
         body a {
             text-decoration: none;
-            color: #000;
+            color: #0000EE;
             font-weight: bold;
             font-size: 1.2em;
         }
+        
+        a:hover {
+            color: #FFA500; /* Change link color to orange on hover */
+        }
 </style>
 <header>
-        <h1>Dave & Rob Grocery</h1>
-        <nav>
-                <ul>
-                <li><a href="listprod.jsp">Product</a></li>
-                <li><a href="listorder.jsp">List Order</a></li>
-                <li><a href="checkout.jsp">Shopping Cart</a></li>
-                </ul>
-        </nav>
+    <h1><a href="shop.html" style="color: #fff">Dave & Rob Grocery</a></h1>
+    <nav>
+        <ul>
+            <li><a href="listprod.jsp">Product Search</a></li>
+            <li><a href="listorder.jsp">List Orders</a></li>
+            <li><a href="showcart.jsp">Shopping Cart</a></li>
+        </ul>
+    </nav>
 </header>
 </head>
 <body>
 <% 
+NumberFormat currFormat = NumberFormat.getCurrencyInstance();
+
 // Get customer id
 String custId = request.getParameter("customerId");
 @SuppressWarnings({"unchecked"})
@@ -112,13 +118,17 @@ String pw = "304#sa#pw";
 Connection conn = DriverManager.getConnection(url, uid, pw);
 
 // Validate customer id in database
-String sql = "SELECT COUNT(*) FROM customer WHERE customerId = ?";
+String firstName, lastName;
+String sql = "SELECT * FROM customer WHERE customerId = ?";
 PreparedStatement pstmt = conn.prepareStatement(sql);
 pstmt.setInt(1, Integer.parseInt(custId));
 ResultSet rs = pstmt.executeQuery();
 if (!rs.next() || rs.getInt(1) == 0) {
     out.println("Customer ID does not exist.");
     return;
+}else{
+    firstName = rs.getString("firstName");
+    lastName = rs.getString("LastName");
 }
 
 // insert into ordersummary table and retrieving auto-generated id
@@ -149,14 +159,41 @@ while (iterator.hasNext()) {
 
     totalAmount += price * quantity;
 }
-
+//for updating total amount for the order in OrderSummary table
 String sql4 = "UPDATE ordersummary SET totalAmount = ? WHERE orderId = ?";
 pstmt = conn.prepareStatement(sql4);
 pstmt.setDouble(1, totalAmount);
 pstmt.setInt(2, orderId);
 pstmt.executeUpdate();
 
-out.println("Order placed successfully. Order ID: " + orderId + ", Total Amount: $" + totalAmount);
+
+// For displaying the order information including all ordered items
+Iterator<Map.Entry<String, ArrayList<Object>>> iterator2 = productList.entrySet().iterator();
+out.println("<h1>Your Order Summary</h1>");
+out.println("<table border=\"1\" style=\"font-size: 20px;\">"); // Increase the font size
+out.println("<tr><th>Product Id</th><th>Product Name</th><th>Quantity</th><th>Price</th><th>Subtotal</th></tr>");
+while (iterator2.hasNext()) {
+    Map.Entry<String, ArrayList<Object>> entry = iterator2.next();
+    ArrayList<Object> product = (ArrayList<Object>) entry.getValue();
+    String productId = (String) product.get(0);
+    String productName = (String) product.get(1);
+    double price = Double.parseDouble((String) product.get(2));
+    int quantity = (Integer) product.get(3);
+    out.println("<tr>");
+    out.println("<td>" + productId + "</td>");
+    out.println("<td>" + productName + "</td>"); 
+    out.println("<td>" + quantity + "</td>"); 
+    out.println("<td>" + currFormat.format(price) + "</td>");
+    out.println("<td>" + currFormat.format(price*quantity) + "</td>");
+    out.println("</tr>");
+}
+out.println("</table>");
+out.println("<h2>Order Total: " + currFormat.format(totalAmount) + "</h2>");
+
+//h3
+out.println("<h3>Order placed successfully. Will be shipped soon...</h3>");
+out.println("<h3>Your order reference number is: " + orderId + "</h3>");
+out.println("<h3>Shipping to customer: " + custId + " Name: " + firstName + " " + lastName + "</h3>");
 
 //clear their shopping cart
 session.removeAttribute("productList");
@@ -175,4 +212,3 @@ out.println("SQLException: " + se);
 %>
 </body>
 </HTML>
-

@@ -7,7 +7,7 @@
 <title>Dave & Rob Grocery</title>
 <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Ariel', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -56,20 +56,24 @@
 
         body a {
             text-decoration: none;
-            color: #000;
+            color:  #0000EE;
             font-weight: bold;
             font-size: 1.2em;
         }
+
+        a:hover {
+            color: #FFA500; /* Change link color to orange on hover */
+        }
 </style>
 <header>
-        <h1>Dave & Rob Grocery</h1>
-        <nav>
-                <ul>
-                <li><a href="listprod.jsp">Product</a></li>
-                <li><a href="listorder.jsp">List Order</a></li>
-                <li><a href="checkout.jsp">Shopping Cart</a></li>
-                </ul>
-        </nav>
+    <h1><a href="shop.html" style="color: #fff">Dave & Rob Grocery</a></h1>
+    <nav>
+        <ul>
+            <li><a href="listprod.jsp">Product Search</a></li>
+            <li><a href="listorder.jsp">List Orders</a></li>
+            <li><a href="showcart.jsp">Shopping Cart</a></li>
+        </ul>
+    </nav>
 </header>
 </head>
 <body>
@@ -143,4 +147,3 @@ out.println("</table>");
 
 </body>
 </html>
-

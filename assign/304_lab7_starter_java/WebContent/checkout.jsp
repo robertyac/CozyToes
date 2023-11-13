@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ray's Grocery CheckOut Line</title>
+<title>Dave & Rob Grocery CheckOut Line</title>
+<style>
+        body {
+            background-color: #33523b;
+            color: white; /* Set text color to white */
+            font-family: 'Ariel', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
