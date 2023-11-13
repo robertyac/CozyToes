@@ -10,64 +10,63 @@
 <head>
 <title>Dave & Rob Grocery</title>
 <style>
-        body {
-            font-family: 'Ariel', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #000;
-        }
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f8f8;
+        color: #333;
+    }
 
-        header {
-            background-color: #33523b;
-            color: #fff;
-            text-align: center;
-            padding: 1em 0;
-        }
+    header {
+        background-color: #33523b;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+    }
 
-        h1 {
-            margin: 0;
-        }
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
 
-        nav {
-            margin-top: 1em;
-        }
+    nav li {
+        margin-right: 20px;
+    }
 
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.3s ease;
+    }
 
-        li {
-            display: inline;
-            margin-right: 20px;
-        }
+    nav a:hover {
+        color: #FFA500;
+    }
 
-		a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-		
-		header ul li a {
-            text-decoration: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-        body a {
-            text-decoration: none;
-            color: #0000EE;
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-        
-        a:hover {
-            color: #FFA500; /* Change link color to orange on hover */
-        }
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 </style>
 <header>
     <h1><a href="shop.html" style="color: #fff">Dave & Rob Grocery</a></h1>
