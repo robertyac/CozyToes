@@ -192,8 +192,9 @@ out.println("<h2>Order Total: " + currFormat.format(totalAmount) + "</h2>");
 //h3
 out.println("<h3>Order placed successfully. Will be shipped soon...</h3>");
 out.println("<h3>Your order reference number is: " + orderId + "</h3>");
-out.println("<h3>Shipping to customer: " + custId + " Name: " + firstName + " " + lastName + "</h3>");
-
+out.println("<h3>Shipping to customer: " + custId + "</h3>");
+out.println("<h3>Name: " + firstName + " " + lastName + "</h3>");
+ 
 //clear their shopping cart
 session.removeAttribute("productList");
 
