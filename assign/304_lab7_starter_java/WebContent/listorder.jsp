@@ -65,7 +65,7 @@
     }
 </style>
 <header>
-    <h1><a href="shop.html" style="color: #fff">Dave & Rob Grocery</a></h1>
+    <h1><a href="index.jsp" style="color: #fff">Dave & Rob Grocery</a></h1>
     <nav>
         <ul>
             <li><a href="listprod.jsp">Product Search</a></li>
