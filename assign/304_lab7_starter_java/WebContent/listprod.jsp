@@ -118,10 +118,11 @@ try{// Load driver class
 		double productPriceDouble = rs.getDouble("productPrice");
         int productId = rs.getInt("productId");
 
-
 		// For each product create a link of the form addcart.jsp?id=productId&name=productName&price=productPrice
         String link = "addcart.jsp?id=" + productId + "&name=" + URLEncoder.encode(productName, "UTF-8") + "&price=" + productPriceDouble;
-        out.println("<tr><td><a href=\"" + link + "\">Add to cart</a></td><td>" + productName + "</td><td>" + productPrice + "</td></tr>");
+
+        String productLink = "product.jsp?id=" + productId;
+        out.println("<tr><td><a href=\"" + link + "\">Add to cart</a></td><td><a href=\"" + productLink + "\">" + productName + "</a></td><td>" + productPrice + "</td></tr>");
     }
     out.println("</table>");
 
