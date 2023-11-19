@@ -37,7 +37,7 @@ Public methods:
 		con = DriverManager.getConnection(url, uid, pw);
 		Statement stmt = con.createStatement();
 	}
-   
+
 	public void closeConnection() 
 	{
 		try {

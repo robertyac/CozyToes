@@ -64,6 +64,7 @@
         background-color: #f2f2f2;
     }
 </style>
+
 <header>
     <h1><a href="index.jsp" style="color: #fff">Dave & Rob Grocery</a></h1>
     <nav>
