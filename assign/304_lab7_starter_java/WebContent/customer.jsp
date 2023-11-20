@@ -17,20 +17,7 @@ stmt.setString(1, userName);
 ResultSet rs = stmt.executeQuery();
 %>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Postal Code</th>
-        <th>Country</th>
-        <th>User ID</th>
-    </tr>
+<table class="vertical-header">
 <%
 while (rs.next()) {
     int id = rs.getInt("customerId");
@@ -45,7 +32,17 @@ while (rs.next()) {
     String country = rs.getString("country");
     String userId = rs.getString("userid");
 
-    out.println("<tr><td>" + id + "</td><td>" + firstName + "</td><td>" + lastName + "</td><td>" + email + "</td><td>" + phone + "</td><td>" + address + "</td><td>" + city + "</td><td>" + state + "</td><td>" + postalCode + "</td><td>" + country + "</td><td>" + userId + "</td></tr>");
+    out.println("<tr><th>ID</th><td>" + id + 
+    "</td><th>First Name</th><td>" + firstName + 
+    "</td><td>" + lastName + 
+    "</td><td>" + email + 
+    "</td><td>" + phone + 
+    "</td><td>" + address + 
+    "</td><td>" + city + 
+    "</td><td>" + state + 
+    "</td><td>" + postalCode + 
+    "</td><td>" + country + 
+    "</td><td>" + userId + "</td></tr>");
 }
 %>
 </table>
