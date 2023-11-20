@@ -76,6 +76,8 @@ while(rs2.next()) {
             pstmt4.setInt(1, quantity);
             pstmt4.setInt(2, productId);
             pstmt4.executeUpdate();
+			// Commit the transaction
+			con.commit();
         }
     } else {
         // If the product ID is not found in the warehouse, cancel the transaction and rollback
@@ -85,16 +87,8 @@ while(rs2.next()) {
     }
 }
 out.print("Shipment successfully processed.");
-// Commit the transaction
-con.commit();
 // TODO: Auto-commit should be turned back on
 con.setAutoCommit(true);
-
-
-
-
-
-
 
 // Close connection
 closeConnection();

@@ -5,6 +5,8 @@
 </head>
 <body>
 
+<h1>Customer Profile</h1>
+
 <%@ include file="auth.jsp"%>
 <%@ include file="jdbc.jsp" %>
 
@@ -17,7 +19,7 @@ stmt.setString(1, userName);
 ResultSet rs = stmt.executeQuery();
 %>
 
-<table class="vertical-header">
+<table border='1'>
 <%
 while (rs.next()) {
     int id = rs.getInt("customerId");
@@ -32,17 +34,17 @@ while (rs.next()) {
     String country = rs.getString("country");
     String userId = rs.getString("userid");
 
-    out.println("<tr><th>ID</th><td>" + id + 
-    "</td><th>First Name</th><td>" + firstName + 
-    "</td><td>" + lastName + 
-    "</td><td>" + email + 
-    "</td><td>" + phone + 
-    "</td><td>" + address + 
-    "</td><td>" + city + 
-    "</td><td>" + state + 
-    "</td><td>" + postalCode + 
-    "</td><td>" + country + 
-    "</td><td>" + userId + "</td></tr>");
+    out.println("<tr><th>ID</th><td>" + id + "</td></tr>");
+    out.println("<tr><th>First Name</th><td>" + firstName + "</td></tr>");
+    out.println("<tr><th>Last Name</th><td>" + lastName + "</td></tr>");
+    out.println("<tr><th>Email</th><td>" + email + "</td></tr>");
+    out.println("<tr><th>Phone</th><td>" + phone + "</td></tr>");
+    out.println("<tr><th>Address</th><td>" + address + "</td></tr>");
+    out.println("<tr><th>City</th><td>" + city + "</td></tr>");
+    out.println("<tr><th>State</th><td>" + state + "</td></tr>");
+    out.println("<tr><th>Postal Code</th><td>" + postalCode + "</td></tr>");
+    out.println("<tr><th>Country</th><td>" + country + "</td></tr>");
+    out.println("<tr><th>User ID</th><td>" + userId + "</td></tr>");
 }
 %>
 </table>
