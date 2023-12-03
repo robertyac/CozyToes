@@ -143,94 +143,104 @@ CREATE TABLE review (
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO category(categoryName) VALUES ('Beverages');
-INSERT INTO category(categoryName) VALUES ('Condiments');
-INSERT INTO category(categoryName) VALUES ('Dairy Products');
-INSERT INTO category(categoryName) VALUES ('Produce');
-INSERT INTO category(categoryName) VALUES ('Meat/Poultry');
-INSERT INTO category(categoryName) VALUES ('Seafood');
-INSERT INTO category(categoryName) VALUES ('Confections');
-INSERT INTO category(categoryName) VALUES ('Grains/Cereals');
+-- Category
+INSERT INTO category(categoryName) VALUES ('Boots Socks');
+INSERT INTO category(categoryName) VALUES ('Crew Socks');
+INSERT INTO category(categoryName) VALUES ('Ankle Socks');
+INSERT INTO category(categoryName) VALUES ('Low Cut Socks');
+INSERT INTO category(categoryName) VALUES ('No Show Socks');
 
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Chai', 1, '10 boxes x 20 bags',18.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Chang',1,'24 - 12 oz bottles',19.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Aniseed Syrup',2,'12 - 550 ml bottles',10.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Chef Anton''s Cajun Seasoning',2,'48 - 6 oz jars',22.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Chef Anton''s Gumbo Mix',2,'36 boxes',21.35);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Grandma''s Boysenberry Spread',2,'12 - 8 oz jars',25.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Uncle Bob''s Organic Dried Pears',4,'12 - 1 lb pkgs.',30.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Northwoods Cranberry Sauce',2,'12 - 12 oz jars',40.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Mishi Kobe Niku',5,'18 - 500 g pkgs.',97.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Ikura',6,'12 - 200 ml jars',31.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Queso Cabrales',3,'1 kg pkg.',21.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Queso Manchego La Pastora',3,'10 - 500 g pkgs.',38.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Tofu',4,'40 - 100 g pkgs.',23.25);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Genen Shouyu',2,'24 - 250 ml bottles',15.50);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Pavlova',7,'32 - 500 g boxes',17.45);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Alice Mutton',5,'20 - 1 kg tins',39.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Carnarvon Tigers',6,'16 kg pkg.',62.50);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Teatime Chocolate Biscuits',7,'10 boxes x 12 pieces',9.20);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Sir Rodney''s Marmalade',7,'30 gift boxes',81.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Sir Rodney''s Scones',7,'24 pkgs. x 4 pieces',10.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Gustaf''s Knackebread',8,'24 - 500 g pkgs.',21.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Sasquatch Ale',1,'24 - 12 oz bottles',14.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Steeleye Stout',1,'24 - 12 oz bottles',18.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Inlagd Sill',6,'24 - 250 g  jars',19.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Boston Crab Meat',6,'24 - 4 oz tins',18.40);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Jack''s New England Clam Chowder',6,'12 - 12 oz cans',9.65);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Singaporean Hokkien Fried Mee',8,'32 - 1 kg pkgs.',14.00);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Louisiana Fiery Hot Pepper Sauce',2,'32 - 8 oz bottles',21.05);
-INSERT product(productName, categoryId, productDesc, productPrice) VALUES ('Laughing Lumberjack Lager',1,'24 - 12 oz bottles',14.00);
+-- Products for Boots Socks
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Wool Blend Boot Socks (Pack of 2)', 1, 'Warm wool blend boot socks, pack of 2 pairs', 19.99);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Thermal Hiking Socks', 1, 'Thermal hiking socks with moisture-wicking, single pair', 12.50);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('High Performance Ski Socks', 1, 'High-performance ski socks for cold weather, single pair', 24.99);
+
+-- Products for Crew Socks
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Cotton Crew Socks (Pack of 6)', 2, 'Soft cotton crew socks, pack of 6 pairs', 24.99);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Flamingo Crew Socks', 2, 'Stylish crew socks with flamingo design', 16.50);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Colorful Striped Crew Socks (Pack of 3)', 2, 'Stylish colorful striped crew socks, pack of 3 pairs', 19.99);
+
+-- Products for Ankle Socks
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Cushioned Ankle Socks (Pack of 5)', 3, 'Cushioned ankle socks for everyday wear, pack of 5 pairs', 18.50);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Breathable Mesh Ankle Socks (Pack of 3)', 3, 'Breathable mesh ankle socks, pack of 3 pairs', 14.99);
+
+-- Products for Low Cut Socks
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Sporty Low Cut Socks (Pack of 6)', 4, 'Sporty low cut socks, pack of 6 pairs', 22.50);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Cotton Low Cut Socks (Pack of 8)', 4, 'Soft cotton low cut socks, pack of 8 pairs', 28.99);
+
+-- Products for No Show Socks
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Silicone Grip No Show Socks (Pack of 4)', 5, 'No show socks with silicone grip, pack of 4 pairs', 15.99);
+INSERT INTO product(productName, categoryId, productDesc, productPrice) VALUES ('Lace Liner No Show Socks (Pack of 3)', 5, 'Lace liner no show socks, pack of 3 pairs', 12.99);
 
 INSERT INTO warehouse(warehouseName) VALUES ('Main warehouse');
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (1, 1, 5, 18);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (2, 1, 10, 19);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (3, 1, 3, 10);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (4, 1, 2, 22);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (5, 1, 6, 21.35);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (6, 1, 3, 25);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (7, 1, 1, 30);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (8, 1, 0, 40);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (9, 1, 2, 97);
-INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (10, 1, 3, 31);
 
+-- Product Inventory for Boots Socks
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (1, 1, 50, 19.99);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (2, 1, 40, 12.50);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (3, 1, 30, 24.99);
+
+-- Product Inventory for Crew Socks
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (4, 1, 60, 24.99);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (5, 1, 45, 16.50);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (6, 1, 35, 19.99);
+
+-- Product Inventory for Ankle Socks
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (7, 1, 70, 18.50);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (8, 1, 50, 14.99);
+
+-- Product Inventory for Low Cut Socks
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (9, 1, 80, 22.50);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (10, 1, 65, 28.99);
+
+-- Product Inventory for No Show Socks
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (11, 1, 90, 15.99);
+INSERT INTO productInventory(productId, warehouseId, quantity, price) VALUES (12, 1, 75, 12.99);
+
+-- Customers
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Arnold', 'Anderson', 'a.anderson@gmail.com', '204-111-2222', '103 AnyWhere Street', 'Winnipeg', 'MB', 'R3X 45T', 'Canada', 'arnold' , '304Arnold!');
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Bobby', 'Brown', 'bobby.brown@hotmail.ca', '572-342-8911', '222 Bush Avenue', 'Boston', 'MA', '22222', 'United States', 'bobby' , '304Bobby!');
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Candace', 'Cole', 'cole@charity.org', '333-444-5555', '333 Central Crescent', 'Chicago', 'IL', '33333', 'United States', 'candace' , '304Candace!');
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Darren', 'Doe', 'oe@doe.com', '250-807-2222', '444 Dover Lane', 'Kelowna', 'BC', 'V1V 2X9', 'Canada', 'darren' , '304Darren!');
 INSERT INTO customer (firstName, lastName, email, phonenum, address, city, state, postalCode, country, userid, password) VALUES ('Elizabeth', 'Elliott', 'engel@uiowa.edu', '555-666-7777', '555 Everwood Street', 'Iowa City', 'IA', '52241', 'United States', 'beth' , '304Beth!');
 
--- Order 1 can be shipped as have enough inventory
-DECLARE @orderId int
+-- Order 1: Sufficient inventory for all items
+DECLARE @orderId1 int
 INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (1, '2019-10-15 10:25:55', 91.70)
-SELECT @orderId = @@IDENTITY
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 1, 1, 18)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 5, 2, 21.35)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 10, 1, 31);
+SELECT @orderId1 = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId1, 1, 1, 18)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId1, 5, 2, 21.35)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId1, 10, 1, 31);
 
+-- Order 2: Sufficient inventory for item 5
+DECLARE @orderId2 int
 INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (2, '2019-10-16 18:00:00', 106.75)
-SELECT @orderId = @@IDENTITY
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 5, 5, 21.35);
+SELECT @orderId2 = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId2, 5, 5, 21.35);
 
--- Order 3 cannot be shipped as do not have enough inventory for item 7
+-- Order 3: Insufficient inventory for item 7
+DECLARE @orderId3 int
 INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (3, '2019-10-15 3:30:22', 140)
-SELECT @orderId = @@IDENTITY
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 6, 2, 25)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 7, 3, 30);
+SELECT @orderId3 = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId3, 6, 2, 25)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId3, 7, 3, 30);
 
+-- Order 4: Sufficient inventory for all items
+DECLARE @orderId4 int
 INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (2, '2019-10-17 05:45:11', 327.85)
-SELECT @orderId = @@IDENTITY
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 3, 4, 10)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 8, 3, 40)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 13, 3, 23.25)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 28, 2, 21.05)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 29, 4, 14);
+SELECT @orderId4 = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 3, 4, 10)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 8, 3, 40)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 13, 3, 23.25)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 28, 2, 21.05)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId4, 29, 4, 14);
 
+-- Order 5: Sufficient inventory for all items
+DECLARE @orderId5 int
 INSERT INTO ordersummary (customerId, orderDate, totalAmount) VALUES (5, '2019-10-15 10:25:55', 277.40)
-SELECT @orderId = @@IDENTITY
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 5, 4, 21.35)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 19, 2, 81)
-INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId, 20, 3, 10);
+SELECT @orderId5 = @@IDENTITY
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId5, 5, 4, 21.35)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId5, 19, 2, 81)
+INSERT INTO orderproduct (orderId, productId, quantity, price) VALUES (@orderId5, 20, 3, 10);
 
 -- New SQL DDL for lab 8
 UPDATE Product SET productImageURL = 'img/1.jpg' WHERE ProductId = 1;
