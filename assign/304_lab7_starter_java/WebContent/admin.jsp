@@ -105,6 +105,7 @@
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 out.println("<h2 align=\"center\">Administrator Sales Report by Day</h2>");
 getConnection();
+
 // Write SQL query that prints out total order amount by day
 String sql = "SELECT CAST(orderDate AS DATE), SUM(totalAmount) FROM ordersummary GROUP BY CAST(orderDate AS DATE)";
 PreparedStatement stmt = con.prepareStatement(sql);
@@ -119,10 +120,57 @@ while (rs.next()) {
 }
 out.println("</table>");
 
+out.println("<h2 align=\"center\">CozyToes Customers</h2>");
 
+%>
+
+<form action="<%= request.getRequestURI() %>" method="post">
+    <label for="searchTerm">Search for Customer by First/Last Name or by Customer ID:</label>
+    <input type="text" id="searchTerm" name="searchTerm">
+    <button type="submit">Search</button>
+</form>
+
+<%
+
+String searchTerm = request.getParameter("searchTerm");
+String sql2 = "SELECT * FROM customer WHERE firstName LIKE ? OR lastName LIKE ? OR customerId LIKE ?";
+PreparedStatement stmt2 = con.prepareStatement(sql2);
+stmt2.setString(1, "%" + searchTerm + "%");
+stmt2.setString(2, "%" + searchTerm + "%");
+stmt2.setString(3, "%" + searchTerm + "%");
+ResultSet rs2 = stmt2.executeQuery();
+%>
+
+<table border='1'>
+<%
+while (rs2.next()) {
+    int id = rs2.getInt("customerId");
+    String firstName = rs2.getString("firstName");
+    String lastName = rs2.getString("lastName");
+    String email = rs2.getString("email");
+    String phone= rs2.getString("phonenum");
+    String address = rs2.getString("address");
+    String city = rs2.getString("city");
+    String state = rs2.getString("state");
+    String postalCode = rs2.getString("postalCode");
+    String country = rs2.getString("country");
+    String userId = rs2.getString("userid");
+
+    out.println("<tr><th>ID</th><td>" + id + "</td></tr>");
+    out.println("<tr><th>First Name</th><td>" + firstName + "</td></tr>");
+    out.println("<tr><th>Last Name</th><td>" + lastName + "</td></tr>");
+    out.println("<tr><th>Email</th><td>" + email + "</td></tr>");
+    out.println("<tr><th>Phone</th><td>" + phone + "</td></tr>");
+    out.println("<tr><th>Address</th><td>" + address + "</td></tr>");
+    out.println("<tr><th>City</th><td>" + city + "</td></tr>");
+    out.println("<tr><th>State</th><td>" + state + "</td></tr>");
+    out.println("<tr><th>Postal Code</th><td>" + postalCode + "</td></tr>");
+    out.println("<tr><th>Country</th><td>" + country + "</td></tr>");
+    out.println("<tr><th>User ID</th><td>" + userId + "</td></tr>");
+}
+out.println("</table>");
 closeConnection();
 %>
 
 </body>
 </html>
-
