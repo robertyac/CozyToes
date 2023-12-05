@@ -25,6 +25,19 @@
         padding: 1em 0;
     }
 
+    h1 a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.5s ease;
+    }
+
+    h1 a:hover {
+        color: #FFA500;
+        animation: color 0.5s ease;
+    }
+
     nav ul {
         list-style-type: none;
         margin: 0;
@@ -67,9 +80,10 @@
     tr:nth-child(even) {
         background-color: #f2f2f2;
     }
+        
 </style>
-<header>
-    <h1><a href="index.jsp" style="color: #fff">CozyToes</a></h1>
+<header style="display: flex; justify-content: space-between; align-items: center;">
+    <h1 style="padding-left: 20px;"><a href="index.jsp">CozyToes</a></h1>
     <nav>
         <ul>
             <li><a href="listprod.jsp">Product Search</a></li>
@@ -77,6 +91,13 @@
             <li><a href="showcart.jsp">Shopping Cart</a></li>
         </ul>
     </nav>
+    <div style="padding-right: 20px;">
+        <% 
+            String userName = (String) session.getAttribute("authenticatedUser");
+            if (userName != null)
+                out.println("<h3>Hello, " + userName + "</h3>");
+        %>
+    </div>
 </header>
 </head>
 <body>
