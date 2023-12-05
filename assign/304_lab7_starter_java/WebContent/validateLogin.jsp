@@ -1,22 +1,32 @@
 <%@ page language="java" import="java.io.*,java.sql.*"%>
 <%@ include file="jdbc.jsp" %>
 <%
-	String authenticatedUser = null;
-	session = request.getSession(true);
+	 String authenticatedUser = null;
+    session = request.getSession(true);
 
-	try
-	{
-		authenticatedUser = validateLogin(out,request,session);
-	}
-	catch(IOException e)
-	{	System.err.println(e); }
+    try
+    {
+        authenticatedUser = validateLogin(out,request,session);
+    }
+    catch(IOException e)
+    {   System.err.println(e); }
 
-	if(authenticatedUser != null)
-		response.sendRedirect("index.jsp");		// Successful login
-	else
-		response.sendRedirect("login.jsp");		// Failed login - redirect back to login page with a message 
+    if(authenticatedUser != null) {
+        // Get the redirect URL from the request
+        String redirectURL = request.getParameter("redirect");
+
+        // If the redirect URL is not null, redirect the user to that URL
+        if (redirectURL != null) {
+            response.sendRedirect(redirectURL);
+        } else {
+            // If the redirect URL is null, redirect the user to a default page
+            response.sendRedirect("index.jsp");
+        }
+    } else {
+        // Failed login - redirect back to login page with a message 
+        response.sendRedirect("login.jsp");
+    }
 %>
-
 
 <%!
 	String validateLogin(JspWriter out,HttpServletRequest request, HttpSession session) throws IOException

@@ -104,6 +104,10 @@
 <% 
 NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 
+// Get payment method and shipping address from request parameters
+String paymentMethod = request.getParameter("paymentMethod");
+String shippingAddress = request.getParameter("shippingAddress");
+
 // Get customer id
 String custId = request.getParameter("customerId");
 @SuppressWarnings({"unchecked"})
@@ -213,7 +217,14 @@ out.println("<h2>Order Total: " + currFormat.format(totalAmount) + "</h2>");
 //h3
 out.println("<h3>Order placed successfully. Will be shipped soon...</h3>");
 out.println("<h3>Your order reference number is: " + orderId + "</h3>");
-out.println("<h3>Shipping to customer: " + custId + " Name: " + firstName + " " + lastName + "</h3>");
+out.println("<h3>Shipping to customer: " + custId + " Name: " + firstName + " " + lastName + " Shipping Address: "+ shippingAddress + "</h3>");
+// Show payment method information based on the selected payment method
+if ("creditCard".equals(paymentMethod)) {
+    String creditCardNumber = request.getParameter("creditCard");
+    out.println("<h3>Payment Method: Credit Card</h3>");
+} else {
+    out.println("<h3>Payment Method: " + paymentMethod + "</h3>");
+}
 
 //clear their shopping cart
 session.removeAttribute("productList");
