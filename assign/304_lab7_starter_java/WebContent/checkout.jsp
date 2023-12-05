@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dave & Rob Grocery CheckOut Line</title>
+<title>Cozy Toes CheckOut Line</title>
 <style>
         body {
             background-color: #33523b;

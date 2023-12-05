@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dave & Rob Grocery</title>
+<title>CozyToes</title>
 <style>
     body {
         font-family: 'Arial', sans-serif;
@@ -66,7 +66,7 @@
 </style>
 
 <header>
-    <h1><a href="index.jsp" style="color: #fff">Dave & Rob Grocery</a></h1>
+    <h1><a href="index.jsp" style="color: #fff">CozyToes</a></h1>
     <nav>
         <ul>
             <li><a href="listprod.jsp">Product Search</a></li>

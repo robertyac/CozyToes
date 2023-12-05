@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    	<title>Dave and Rob Grocery Main Page</title>
+    	<title>Cozy Toes</title>
     <style>
         body {
             background-color: #33523b;
@@ -18,7 +18,8 @@
     </style>
 </head>
 <body>
-<h1 align="center">Welcome to Dave and Rob Grocery</h1>
+<h1 align="center">Welcome to CozyToes</h1>
+<h2 align="center">Happy feet, happy life with CozyToes on your toes!</h2>
 
 <h2 align="center"><a href="login.jsp">Login</a></h2>
 
