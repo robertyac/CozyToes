@@ -205,23 +205,23 @@
     </div>
 
     <div class="featured-product-box">
-        <a href="product.jsp?id=1">
-            <img src='img/placeholder.jpg'>
-            Placeholder
+        <a href="product.jsp?id=9">
+            <img src='img/9.jpg'>
+           Sporty Low Cut Socks (Pack of 6)
         </a>
     </div>
 
     <div class="featured-product-box">
-        <a href="product.jsp?id=5">
-            <img src='img/placeholder.jpg'>
-            Placeholder
+        <a href="product.jsp?id=11">
+            <img src='img/11.jpg'>
+          Silicone Grip No Show Socks (Pack of 4)
         </a>
     </div>
 
     <div class="featured-product-box">
-        <a href="product.jsp?id=3">
-             <img src='img/placeholder.jpg'>
-            Placeholder
+        <a href="product.jsp?id=7">
+             <img src='img/7.jpg'>
+            Cushioned Ankle Socks (Pack of 5)
         </a>
     </div>
 </div>
