@@ -138,26 +138,26 @@ else
 		double pr = 0;
 		int qty = 0;
 		
-		try
-		{
-			pr = Double.parseDouble(price.toString());
-		}
-		catch (Exception e)
-		{
-			out.println("Invalid price for product: "+product.get(0)+" price: "+price);
-		}
-		try
-		{
-			qty = Integer.parseInt(itemqty.toString());
-		}
-		catch (Exception e)
-		{
-			out.println("Invalid quantity for product: "+product.get(0)+" quantity: "+qty);
-		}		
+        try {
+            pr = Double.parseDouble(price.toString());
+        } catch (Exception e) {
+            out.println("Invalid price for product: " + product.get(0) + " price: " + price);
+        }
+        try {
+            qty = Integer.parseInt(itemqty.toString());
+        } catch (Exception e) {
+            out.println("Invalid quantity for product: " + product.get(0) + " quantity: " + qty);
+        }
 
-		out.print("<td align=\"right\">"+currFormat.format(pr)+"</td>");
-		out.print("<td align=\"right\">"+currFormat.format(pr*qty)+"</td></tr>");
-		out.println("</tr>");
+        out.print("<td align=\"right\">" + currFormat.format(pr) + "</td>");
+        out.print("<td align=\"right\">" + currFormat.format(pr * qty) + "</td>");
+        out.print("<td style=\"white-space: nowrap;\">");
+        out.print("<form method=\"post\" action=\"removeFromCart.jsp\">");
+        out.print("<input type=\"hidden\" name=\"productId\" value=\"" + product.get(0) + "\"/>");
+        out.print("<input type=\"submit\" value=\"Remove\"/>");
+        out.print("</form>");
+        out.print("</td></tr>");
+
 		total = total +pr*qty;
 	}
 	out.println("<tr><td colspan=\"4\" align=\"right\"><b>Order Total</b></td>"
