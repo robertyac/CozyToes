@@ -95,62 +95,52 @@
 <%@ include file="jdbc.jsp" %>
 
 <%
-String userName = (String) session.getAttribute("authenticatedUser");
 getConnection();
-String sql = "SELECT * FROM customer WHERE userid = ?";
-PreparedStatement stmt = con.prepareStatement(sql);
-stmt.setString(1, userName);
-ResultSet rs = stmt.executeQuery();
+String sql = "UPDATE customer SET firstName=?, lastName=?, email=?, phonenum=?, address=?, city=?, state=?, postalCode=?, country=? WHERE userid=?";
+PreparedStatement pstmt = con.prepareStatement(sql);
 %>
 
-<table border='1'>
 <%
-while (rs.next()) {
-    int id = rs.getInt("customerId");
-    String firstName = rs.getString("firstName");
-    String lastName = rs.getString("lastName");
-    String email = rs.getString("email");
-    String phone= rs.getString("phonenum");
-    String address = rs.getString("address");
-    String city = rs.getString("city");
-    String state = rs.getString("state");
-    String postalCode = rs.getString("postalCode");
-    String country = rs.getString("country");
-    String userId = rs.getString("userid");
+try {
+    String firstName = request.getParameter("firstName");
+    String lastName = request.getParameter("lastName");
+    String email = request.getParameter("email");
+    String phone = request.getParameter("phone");
+    String address = request.getParameter("address");
+    String city = request.getParameter("city");
+    String state = request.getParameter("state");
+    String postalCode = request.getParameter("postalCode");
+    String country = request.getParameter("country");
+    String userId = request.getParameter("userId");
 
-    out.println("<tr><th>ID</th><td>" + id + "</td></tr>");
-    out.println("<tr><th>First Name</th><td>" + firstName + "</td></tr>");
-    out.println("<tr><th>Last Name</th><td>" + lastName + "</td></tr>");
-    out.println("<tr><th>Email</th><td>" + email + "</td></tr>");
-    out.println("<tr><th>Phone</th><td>" + phone + "</td></tr>");
-    out.println("<tr><th>Address</th><td>" + address + "</td></tr>");
-    out.println("<tr><th>City</th><td>" + city + "</td></tr>");
-    out.println("<tr><th>State</th><td>" + state + "</td></tr>");
-    out.println("<tr><th>Postal Code</th><td>" + postalCode + "</td></tr>");
-    out.println("<tr><th>Country</th><td>" + country + "</td></tr>");
-    out.println("<tr><th>User ID</th><td>" + userId + "</td></tr>");
+    pstmt.setString(1, firstName);
+    pstmt.setString(2, lastName);
+    pstmt.setString(3, email);
+    pstmt.setString(4, phone);
+    pstmt.setString(5, address);
+    pstmt.setString(6, city);
+    pstmt.setString(7, state);
+    pstmt.setString(8, postalCode);
+    pstmt.setString(9, country);
+    pstmt.setString(10, userId);
 
+    pstmt.executeUpdate();
+
+    response.sendRedirect("customer.jsp");
+
+} catch (Exception e) {
+    e.printStackTrace();
+} finally {
+    closeConnection();
 }
 %>
-</table>
-    <a href="editCustomer.jsp">Edit</a>
+
 <%
 closeConnection();
 %>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

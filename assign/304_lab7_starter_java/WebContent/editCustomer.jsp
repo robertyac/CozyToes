@@ -89,7 +89,7 @@
 </head>
 <body>
 
-<h1>Customer Profile</h1>
+<h1>Edit Customer Details</h1>
 
 <%@ include file="auth.jsp"%>
 <%@ include file="jdbc.jsp" %>
@@ -104,53 +104,46 @@ ResultSet rs = stmt.executeQuery();
 %>
 
 <table border='1'>
-<%
-while (rs.next()) {
-    int id = rs.getInt("customerId");
-    String firstName = rs.getString("firstName");
-    String lastName = rs.getString("lastName");
-    String email = rs.getString("email");
-    String phone= rs.getString("phonenum");
-    String address = rs.getString("address");
-    String city = rs.getString("city");
-    String state = rs.getString("state");
-    String postalCode = rs.getString("postalCode");
-    String country = rs.getString("country");
-    String userId = rs.getString("userid");
+<form method="post" action="updateCustomer.jsp">
+        <table border="1">
+        <%
+        while (rs.next()) {
+            int id = rs.getInt("customerId");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+            String email = rs.getString("email");
+            String phone = rs.getString("phonenum");
+            String address = rs.getString("address");
+            String city = rs.getString("city");
+            String state = rs.getString("state");
+            String postalCode = rs.getString("postalCode");
+            String country = rs.getString("country");
+            String userId = rs.getString("userid");
 
-    out.println("<tr><th>ID</th><td>" + id + "</td></tr>");
-    out.println("<tr><th>First Name</th><td>" + firstName + "</td></tr>");
-    out.println("<tr><th>Last Name</th><td>" + lastName + "</td></tr>");
-    out.println("<tr><th>Email</th><td>" + email + "</td></tr>");
-    out.println("<tr><th>Phone</th><td>" + phone + "</td></tr>");
-    out.println("<tr><th>Address</th><td>" + address + "</td></tr>");
-    out.println("<tr><th>City</th><td>" + city + "</td></tr>");
-    out.println("<tr><th>State</th><td>" + state + "</td></tr>");
-    out.println("<tr><th>Postal Code</th><td>" + postalCode + "</td></tr>");
-    out.println("<tr><th>Country</th><td>" + country + "</td></tr>");
-    out.println("<tr><th>User ID</th><td>" + userId + "</td></tr>");
-
-}
-%>
+            out.println("<tr><th>ID</th><td>" + id + "</td></tr>");
+            out.println("<tr><th>First Name</th><td><input type='text' name='firstName' value='" + firstName + "'></td></tr>");
+            out.println("<tr><th>Last Name</th><td><input type='text' name='lastName' value='" + lastName + "'></td></tr>");
+            out.println("<tr><th>Email</th><td><input type='text' name='email' value='" + email + "'></td></tr>");
+            out.println("<tr><th>Phone</th><td><input type='text' name='phone' value='" + phone + "'></td></tr>");
+            out.println("<tr><th>Address</th><td><input type='text' name='address' value='" + address + "'></td></tr>");
+            out.println("<tr><th>City</th><td><input type='text' name='city' value='" + city + "'></td></tr>");
+            out.println("<tr><th>State</th><td><input type='text' name='state' value='" + state + "'></td></tr>");
+            out.println("<tr><th>Postal Code</th><td><input type='text' name='postalCode' value='" + postalCode + "'></td></tr>");
+            out.println("<tr><th>Country</th><td><input type='text' name='country' value='" + country + "'></td></tr>");
+            out.println("<tr><th>User ID</th><td><input type='text' name='userId' value='" + userId + "'></td></tr>");
+        }
+        %>
+        </table>
+        <input type="submit" value="Update">
+    </form>
 </table>
-    <a href="editCustomer.jsp">Edit</a>
+
 <%
 closeConnection();
 %>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
