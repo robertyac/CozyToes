@@ -33,7 +33,7 @@
     <title>CozyToes Checkout</title>
     <style>
         body {
-            background-color: #33523b;
+            background-color: #2c3e2a;
             color: white; /* Set text color to white */
             font-family: 'Arial', sans-serif;
         }
