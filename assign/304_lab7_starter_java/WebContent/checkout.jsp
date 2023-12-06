@@ -7,7 +7,7 @@
 
     if (userName == null) {
         // If the user is not authenticated, redirect to the login page with the checkout URL parameter
-        String checkoutURL = "checkout.jsp"; // Adjust the URL as needed
+        String checkoutURL = "checkout.jsp"; 
         response.sendRedirect("login.jsp?redirect=" + URLEncoder.encode(checkoutURL, "UTF-8"));
     } else {
         // Proceed with the checkout logic

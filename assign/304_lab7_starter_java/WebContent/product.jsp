@@ -147,6 +147,87 @@ if (rs.next()) {
     stmt.close();
 %>
 
+<!-- Add a form for the review -->
+<h3>Leave a Review</h3>
+<form id="reviewForm" action="submitReview.jsp" method="post" onsubmit="return validateReview()">
+    <input type="hidden" name="productId" value="<%=productId%>">
+    <label for="rating">Rating (1-5):</label><br>
+    <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+    <label for="review">Review:</label><br>
+    <textarea id="review" name="review" required></textarea><br>
+    <input type="submit" value="Submit Review">
+</form>
+
+<script>
+    function validateReview() {
+        var rating = document.getElementById('rating').value;
+        var review = document.getElementById('review').value;
+
+        // Check if rating is a number between 1 and 5
+        if (isNaN(rating) || rating < 1 || rating > 5) {
+            alert('Please enter a valid rating between 1 and 5.');
+            return false;
+        }
+
+        // Check if the review is not empty
+        if (review.trim() === '') {
+            alert('Please enter a review.');
+            return false;
+        }
+
+        // You can add more specific validation logic here if needed
+
+        return true;
+    }
+</script>
+
+<%
+//PreparedStatement
+String reviewSql = "SELECT * FROM review WHERE productId = ? ORDER BY reviewDate DESC";
+String avgRatingSql = "SELECT AVG(reviewRating) as avgRating FROM review WHERE productId = ?";
+
+getConnection();
+
+//average rating
+PreparedStatement avgRatingStmt = con.prepareStatement(avgRatingSql);
+avgRatingStmt.setString(1, productId);
+ResultSet avgRatingRs = avgRatingStmt.executeQuery();
+
+if (avgRatingRs.next()) {
+    double avgRating = avgRatingRs.getDouble("avgRating");
+    out.println("<h3>Average Rating: " + avgRating + "</h3>");
+}
+
+avgRatingRs.close();
+avgRatingStmt.close();
+
+//reviews
+PreparedStatement reviewStmt = con.prepareStatement(reviewSql);
+reviewStmt.setString(1, productId);
+ResultSet reviewRs = reviewStmt.executeQuery();
+
+out.println("<h3>Reviews:</h3>");
+out.println("<table>");
+out.println("<tr><th>Rating</th><th>Date</th><th>Review</th></tr>");
+
+while (reviewRs.next()) {
+    String reviewRating = reviewRs.getString("reviewRating");
+    Date reviewDate = reviewRs.getDate("reviewDate");
+    String reviewComment = reviewRs.getString("reviewComment");
+    out.println("<tr>");
+    out.println("<td>" + reviewRating + "</td>");
+    out.println("<td>" + reviewDate + "</td>");
+    out.println("<td>" + reviewComment + "</td>");
+    out.println("</tr>");
+}
+
+out.println("</table>");
+
+reviewRs.close();
+closeConnection();
+reviewStmt.close();
+%>
+
 </body>
 </html>
 
