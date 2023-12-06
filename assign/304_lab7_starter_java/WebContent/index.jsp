@@ -16,7 +16,14 @@
     }
 
     h1 {
-        margin-top: 50px;
+    margin-top: 50px;
+    box-shadow: inset 0 0 0 0 #54b3d6;
+    color: #ffd700;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    }
+    h1:hover {
+    box-shadow: inset 5000px 0 0 0 #ffd700;
+    color: white;
     }
 
     h2 {
@@ -28,10 +35,27 @@
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s ease;
+        position: relative;
     }
 
-    a:hover {
-        color: #ffa500; 
+    a::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        border-radius: 4px;
+        background-color: #ffa500;
+        bottom: 0;
+        left: 0;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .3s ease-in-out;
+    }
+
+    a:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+
     }
 
     h3 {
@@ -63,7 +87,7 @@
     }
 
     .test-ship-box {
-        background-color: #001f3f; 
+        background-color: #1a1a1a; 
         padding: 10px;
         margin: 20px auto;
         width: 80%;
