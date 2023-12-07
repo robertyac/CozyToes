@@ -12,7 +12,7 @@
     }
 
     header {
-        background-color: #33523b;
+        background-color: #2c3e2a;
         color: #fff;
         text-align: center;
         padding: 1em 0;
@@ -84,7 +84,13 @@
             <li><a href="showcart.jsp">Shopping Cart</a></li>
         </ul>
     </nav>
-    
+    <div style="padding-right: 20px;">
+        <% 
+            String user = (String) session.getAttribute("authenticatedUser");
+            if (user != null)
+                out.println("<h3>Hello, " + user + "</h3>");
+        %>
+    </div> 
 </header>
 </head>
 <body>
